@@ -1,0 +1,14 @@
+name: first-workflow
+
+on: push
+
+jobs: 
+  send-restic-pack:
+    needs: before_script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 #gets the source code into the vm
+      - run: bash ./before_script
+      - run: python3 ./ftp_version.py
+      - run: bash ./build.sh
+      - run: bash ./release.sh
