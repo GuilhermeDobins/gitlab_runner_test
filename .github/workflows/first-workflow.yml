@@ -4,11 +4,17 @@ on: push
 
 jobs: 
   send-restic-pack:
-    needs: before_script
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 #gets the source code into the vm
-      - run: bash ./before_script
-      - run: python3 ./ftp_version.py
-      - run: bash ./build.sh
-      - run: bash ./release.sh
+      - uses: uraimo/run-on-arch-action@v2
+        name: Build script
+        id: build
+        with:
+          arch: ppc64le
+          distro: ubuntu_latest
+          run: | 
+            bash ./before_script
+            python3 ./ftp_version.py
+            bash ./build.sh
+            bash ./release.sh
