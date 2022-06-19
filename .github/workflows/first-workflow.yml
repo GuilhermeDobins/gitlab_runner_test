@@ -8,7 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2.1.0 #gets the source code into the vm
       - uses: uraimo/run-on-arch-action@v2
-      - uses: actions/setup-go@v3.2.0
         name: Run commands
         id: runcmd
         with:
