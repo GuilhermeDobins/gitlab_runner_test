@@ -6,15 +6,12 @@ jobs:
   send-restic-pack:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2 #gets the source code into the vm
+      - uses: actions/checkout@v2.1.0 #gets the source code into the vm
       - uses: uraimo/run-on-arch-action@v2
-        name: Build script
-        id: build
+        name: Run commands
+        id: runcmd
         with:
           arch: ppc64le
           distro: ubuntu20.04
           run: | 
-            bash ./before_script
-            python3 ./ftp_version.py
-            bash ./build.sh
-            bash ./release.sh
+            echo "Print something"
